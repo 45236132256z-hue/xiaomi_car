@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>汽車比較</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 20px; }
+      .compare-form, .comparison { max-width: 900px; margin: 0 auto; }
+      table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+      th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+      th { background: #f4f4f4; }
+      .center { text-align: center; }
+      .button { margin-top: 10px; padding: 10px 16px; border: none; background: #007bff; color: white; cursor: pointer; }
+      .button:hover { background: #0056b3; }
+    </style>
+  </head>
+  <body>
+    <div class="compare-form">
+      <h1>汽車比較工具</h1>
+      <form action="/compare" method="post">
+        <label for="car1">車輛 1：</label>
+        <select id="car1" name="car1" required>
+          <option value="">請選擇...</option>
+          {% for key, car in cars.items() %}
+            <option value="{{ key }}" {% if key == selected_car1 %}selected{% endif %}>{{ car.name }}</option>
+          {% endfor %}
+        </select>
+
+        <label for="car2" style="margin-left: 20px;">車輛 2：</label>
+        <select id="car2" name="car2" required>
+          <option value="">請選擇...</option>
+          {% for key, car in cars.items() %}
+            <option value="{{ key }}" {% if key == selected_car2 %}selected{% endif %}>{{ car.name }}</option>
+          {% endfor %}
+        </select>
+
+        <button type="submit" class="button">比較</button>
+      </form>
+    </div>
+
+    {% if car1 and car2 %}
+      <div class="comparison">
+        <h2>比較結果</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>屬性</th>
+              <th>{{ car1.name }}</th>
+              <th>{{ car2.name }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>價格</td><td>{{ car1.price }}</td><td>{{ car2.price }}</td></tr>
+            <tr><td>引擎</td><td>{{ car1.engine }}</td><td>{{ car2.engine }}</td></tr>
+            <tr><td>馬力</td><td>{{ car1.hp }}</td><td>{{ car2.hp }}</td></tr>
+            <tr><td>油耗</td><td>{{ car1.fuel }}</td><td>{{ car2.fuel }}</td></tr>
+          </tbody>
+        </table>
+      </div>
+    {% endif %}
+  </body>
+</html>
