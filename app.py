@@ -3,19 +3,18 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-# 🚗 調整資料庫欄位，完全對應你網頁上的「引擎」、「馬力」、「油耗」
+# 🚗 修正後的完整資料庫，欄位名稱完全對應你的 HTML 表格
 cars = {
     "su7_standard": {
         "name": "小米 SU7 標準版",
         "price": "21.59 萬人民幣",
         "type": "純電動轎車",
-        "acceleration": "5.28 秒",  # 保留備用
+        "acceleration": "5.28 秒",
         "top_speed": "210 km/h",
         "battery": "700 km",
         "smart_drive": "Xiaomi Pilot Pro",
         "hardware": "NVIDIA Orin-N",
         "navigation": "基礎智慧導航",
-        # 👇 以下三個欄位完美對應你的網頁表格
         "engine": "單電機後驅 (V6 內置)",
         "horsepower": "299 匹馬力",
         "fuel_consumption": "純電驅動 (0 耗油)"
@@ -44,7 +43,6 @@ cars = {
         "smart_drive": "賽道級智駕系統",
         "hardware": "全車賽道感測器",
         "navigation": "紐北專屬地圖",
-        # 👇 以下三個欄位完美對應你的網頁表格
         "engine": "三電機四驅 (2x V8s + 1x V6s)",
         "horsepower": "1548 匹馬力",
         "fuel_consumption": "純電賽道配置 (0 耗油)"
